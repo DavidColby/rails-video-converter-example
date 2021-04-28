@@ -4,6 +4,10 @@
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
+<div>
+<video controls>
+  <source src="<%= url_for(@user.profile_video) %>">
+</video>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
