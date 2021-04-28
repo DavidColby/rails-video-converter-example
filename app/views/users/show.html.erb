@@ -4,10 +4,15 @@
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
-<div>
-<video controls>
-  <source src="<%= url_for(@user.profile_video) %>">
-</video>
+<div data-id="<%= @user.id %>" data-controller="conversion-progress converted-video" data-converted-video-target="videoContainer" style="max-width: 500px; max-height: 500px;">
+  <% if @user.convert_video? %>
+    <div>
+      <p>We are converting your video. The video is currently <span data-conversion-progress-target="progressText">0%</span> processed</p>
+    </div>
+  <% else %>
+    <%= render "profile_video", user: @user %>
+  <% end %>
+</div>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
